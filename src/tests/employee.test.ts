@@ -1,17 +1,17 @@
-import request from "supertest";
+import request, { Response } from "supertest";
 import { app, server } from "..";
 
-let response: request.Response;
-
-beforeEach(async () => {
-  response = await request(app).get("/api/employee");
-});
-
-afterEach(() => {
-  response = null as any;
-});
+let response: Response;
 
 describe("employee API Endpoints", () => {
+  beforeEach(async () => {
+    response = await request(app).get("/api/employee");
+  });
+
+  afterEach(() => {
+    response = null as any;
+  });
+
   it("responds data with status 200", async () => {
     expect(response.status).toBe(200);
   });
