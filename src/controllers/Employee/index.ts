@@ -3,21 +3,14 @@ import db from "../../config/db";
 import moment from "moment";
 
 export const getEmployees = async (req: Request, res: Response) => {
-  const listesEmployee = await db.employee
-    .findMany({
-      include: {
-        checkins: true,
-      },
-    })
-    .catch((err: Error) => err.message);
-  return res.json(listesEmployee);
-};
-
-export const getEmployeesWithFilters = async (req: Request, res: Response) => {
-  const { date } = req.params;
+  const { date } = req.query;
   if (date) {
-    const start = moment(new Date(date)).startOf("day").toISOString();
-    const end = moment(new Date(date)).endOf("day").toISOString();
+    const start = moment(new Date(date as string))
+      .startOf("day")
+      .toISOString();
+    const end = moment(new Date(date as string))
+      .endOf("day")
+      .toISOString();
 
     const EmployeeWIthFilters = await db.employee
       .findMany({
@@ -27,14 +20,25 @@ export const getEmployeesWithFilters = async (req: Request, res: Response) => {
             lte: end,
           },
         },
+        include: {
+          checkins: true,
+        },
       })
       .catch((err: Error) => {
         return err.message;
       });
+
     return res.json(EmployeeWIthFilters);
   }
 
-  return res.json({});
+  const listesEmployee = await db.employee
+    .findMany({
+      include: {
+        checkins: true,
+      },
+    })
+    .catch((err: Error) => err.message);
+  return res.json(listesEmployee);
 };
 
 export const CreateEmployee = async (req: Request, res: Response) => {

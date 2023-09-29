@@ -11,8 +11,8 @@ app.use(bodyParser.json());
 app.use("/api/employee", routerEmployee);
 app.use("/api/check", routerCheck);
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Serveur Express en cours d'exécution sur le port ${port}`);
 });
 
-export default app;
+export { app, server };

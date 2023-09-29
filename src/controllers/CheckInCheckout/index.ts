@@ -3,7 +3,7 @@ import db from "../../config/db";
 import moment from "moment";
 
 export const CheckIn = async (req: Request, res: Response) => {
-  const { id, comment } = req.query;
+  const { id, comment } = req.body;
 
   if (id && !isNaN(Number(id))) {
     const resulCheckIn = await db.checkinCheckout
@@ -23,7 +23,7 @@ export const CheckIn = async (req: Request, res: Response) => {
 };
 
 export const CheckOut = async (req: Request, res: Response) => {
-  const { id, comment } = req.query;
+  const { id, comment } = req.body;
 
   if (id && !isNaN(Number(id))) {
     const resulCheckIn = await db.checkinCheckout.findFirst({
