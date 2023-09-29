@@ -9,9 +9,9 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "Node",
-    "types": ["node"],
+    "types": ["node","jest"],
     "lib": ["ES2020"]
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "src/tests/employee.test.js"],
   "exclude": ["node_modules"]
 }

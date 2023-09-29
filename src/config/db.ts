@@ -1,16 +1,5 @@
-import { Sequelize } from "sequelize";
+import { PrismaClient } from "@prisma/client";
 
-const sequelize = new Sequelize(
-  "postgres://nardi:admintest@postgres:5432/ecoleabc"
-);
+const db = new PrismaClient();
 
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log(`Database connected to discover`);
-  })
-  .catch((err) => {
-    console.log("error connexion database ==>", err);
-  });
-
-export default sequelize;
+export default db;

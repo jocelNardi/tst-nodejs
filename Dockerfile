@@ -12,6 +12,8 @@ COPY . .
 
 EXPOSE 4000
 
+RUN npx prisma generate
+
 RUN yarn build
 
 CMD yarn start
