@@ -10,6 +10,7 @@
     "start": "tsc && nodemon ./dist/index.js",
     "build": "tsc",
     "prisma:migrate": "npx prisma migrate dev --name $(date +%Y%m%d-%H%M%S)",
+    "prisma:generate": "npx prisma generate",
     "test": "tsc && jest"
   },
   "dependencies": {

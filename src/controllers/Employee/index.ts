@@ -4,7 +4,11 @@ import moment from "moment";
 
 export const getEmployees = async (req: Request, res: Response) => {
   const listesEmployee = await db.employee
-    .findMany()
+    .findMany({
+      include: {
+        checkins: true,
+      },
+    })
     .catch((err: Error) => err.message);
   return res.json(listesEmployee);
 };
@@ -29,6 +33,7 @@ export const getEmployeesWithFilters = async (req: Request, res: Response) => {
       });
     return res.json(EmployeeWIthFilters);
   }
+
   return res.json({});
 };
 

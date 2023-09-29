@@ -21,9 +21,12 @@ model Employee {
 
 model CheckinCheckout{
   id Int @id @default(autoincrement())
-  checkin    DateTime
-  checkout   DateTime
-  comment    String?
+  date       DateTime  @default(now())
+  checkin    DateTime?
+  checkout   DateTime?
+  checkinComment String?   
+  checkoutComment String? 
+  durations Int @default(0)
   employeeId Int  
   employee   Employee  @relation(fields: [employeeId], references: [id])
 }
