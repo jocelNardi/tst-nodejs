@@ -40,33 +40,70 @@ yarn && yarn test
 
 > Cet endpoint Permet a l'utilisateur de se connecter avant de voirs les listes des employés
 
-```http
+`````http
 POST /api/admin/login
-```
+Content-Type: application/json
+
+```json
+{
+    "username":"Admin",
+    "password":"123456789"
+}
+
+
+### Exemple de réponse
+
+```json
+{
+    "admin": {
+        "id": 1,
+        "name": "Admin"
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjk2MjMzOTA0LCJleHAiOjE2OTYzMjAzMDR9.F5yK1RjMy_6TMl5-tPcMqH-mqDrp9kUdRwKk2Y9jd1c"
+}
+
+
 
 > Cet endpont permet de récupérer la liste des employes enregistrés dans le système.
 
 ```http
 GET /api/employee
-```
+Authorization: Bearer JETON_D_AUTHENTIFICATION(token)
+
 
 > Cet endpont permet de récupérer la liste des employes enregistrés dans le système avec une date ajouter dans le parametre.
 
 ```http
 GET /api/employee?date=2023-09-29
-```
+Authorization: Bearer JETON_D_AUTHENTIFICATION(token)
+
 
 > Cet endpont permet de créer un nouvel employé dans le système.
 
 ````http
 POST /api/employee
 Content-Type: application/json
+Authorization: Bearer JETON_D_AUTHENTIFICATION(token)
 
+Body:
+```json
 {
     "name": "Employe 1",
     "firstName": "Thomas",
     "department": "Sales"
 }
+
+### Exemple de réponse
+
+```json
+{
+    "id": 1,
+    "name": "Employe 1",
+    "firstName": "Thomas",
+    "dateCreated": "2023-10-02T08:12:55.646Z",
+    "department": "Sales"
+}
+
 
 > Cet endpont permet au employé de faire Checkin a l'entrer.
 
@@ -74,8 +111,26 @@ Content-Type: application/json
 POST /api/check/in
 Content-Type: application/json
 
+
+body:
+
+```json
 {
     "id": "1"
+}
+
+### Exemple de réponse
+
+```json
+{
+    "id": 1,
+    "date": "2023-10-02T08:13:47.443Z",
+    "checkin": "2023-10-02T08:13:47.442Z",
+    "checkout": null,
+    "checkinComment": null,
+    "checkoutComment": null,
+    "durations": 0,
+    "employeeId": 1
 }
 
 > Cet endpont permet au employé de faire Checkout au sortie.
@@ -87,6 +142,22 @@ Content-Type: application/json
     "id": "1"
 }
 
+### Exemple de réponse
+
+```json
+{
+    "id": 1,
+    "date": "2023-10-02T08:13:47.443Z",
+    "checkin": "2023-10-02T08:13:47.442Z",
+    "checkout": "2023-10-02T08:15:18.658Z",
+    "checkinComment": null,
+    "checkoutComment": null,
+    "durations": 0,
+    "employeeId": 1
+}
+
+
+> NB: la duration est en Heure
 
 
 
@@ -106,7 +177,7 @@ Content-Type: application/json
 L'école ABC gère le pointage de ses employés via un fichier excel.
 Format des données:
 
-````
+`````
 
     IDENTIFIANT_EMPLOYEE:    14566
     CHECK-IN: 2020-09-22T10:00:00
