@@ -17,3 +17,9 @@ export const mockedData: {
   durations: 0,
   employeeId: 3,
 };
+
+export const SECRET_KEY = process.env.SECRET_KEY || "AZERTY";
+export const ADMIN = {
+  USERNAME: process.env.USERNAME_ADMIN || "Admin",
+  PASSWORD: process.env.PASSWORD_ADMIN || "123456789",
+};

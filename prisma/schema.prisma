@@ -30,3 +30,9 @@ model CheckinCheckout{
   employeeId Int  
   employee   Employee  @relation(fields: [employeeId], references: [id])
 }
+
+model Administrator{
+  id Int @id @default(autoincrement()) 
+  username String @unique
+  password String
+}

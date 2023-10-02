@@ -2,7 +2,10 @@ import { Request, Response } from "express";
 import db from "../../config/db";
 import moment from "moment";
 
-export const getEmployees = async (req: Request, res: Response) => {
+export const getEmployees = async (
+  req: Request,
+  res: Response
+): Promise<Response<any, Record<string, any>> | undefined> => {
   const { date } = req.query;
   if (date) {
     const start = moment(new Date(date as string))
@@ -41,7 +44,10 @@ export const getEmployees = async (req: Request, res: Response) => {
   return res.json(listesEmployee);
 };
 
-export const CreateEmployee = async (req: Request, res: Response) => {
+export const CreateEmployee = async (
+  req: Request,
+  res: Response
+): Promise<Response<any, Record<string, any>> | undefined> => {
   const { name, firstName, department } = req.body;
   const NewEmployee = await db.employee
     .create({

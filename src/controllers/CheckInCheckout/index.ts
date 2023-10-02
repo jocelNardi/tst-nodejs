@@ -5,7 +5,10 @@ import moment from "moment";
 const startDay = moment().startOf("day").toISOString();
 const endOfDay = moment().endOf("day").toISOString();
 
-export const CheckIn = async (req: Request, res: Response) => {
+export const CheckIn = async (
+  req: Request,
+  res: Response
+): Promise<Response<any, Record<string, any>> | undefined> => {
   const { id, comment } = req.body;
 
   if (id && !isNaN(Number(id))) {
@@ -52,7 +55,10 @@ export const CheckIn = async (req: Request, res: Response) => {
   });
 };
 
-export const CheckOut = async (req: Request, res: Response) => {
+export const CheckOut = async (
+  req: Request,
+  res: Response
+): Promise<Response<any, Record<string, any>> | undefined> => {
   const { id, comment } = req.body;
 
   if (id && !isNaN(Number(id))) {

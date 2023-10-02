@@ -14,7 +14,5 @@ EXPOSE 4000
 
 RUN npx prisma generate
 
-RUN yarn build
-
-CMD yarn start
+CMD yarn prisma:migrate && yarn prisma:seed && yarn start
 
