@@ -41,7 +41,7 @@ yarn && yarn test
 > Cet endpoint Permet a l'utilisateur de se connecter avant de voirs les listes des employés
 
 `````http
-POST /api/admin/login
+POST http://localhost:4000/api/admin/login
 Content-Type: application/json
 
 ```json
@@ -67,21 +67,21 @@ Content-Type: application/json
 > Cet endpont permet de récupérer la liste des employes enregistrés dans le système.
 
 ```http
-GET /api/employee
+GET http://localhost:4000/api/employee
 Authorization: Bearer JETON_D_AUTHENTIFICATION(token)
 
 
 > Cet endpont permet de récupérer la liste des employes enregistrés dans le système avec une date ajouter dans le parametre.
 
 ```http
-GET /api/employee?date=2023-09-29
+GET http://localhost:4000/api/employee?date=2023-09-29
 Authorization: Bearer JETON_D_AUTHENTIFICATION(token)
 
 
 > Cet endpont permet de créer un nouvel employé dans le système.
 
 ````http
-POST /api/employee
+POST http://localhost:4000/api/employee
 Content-Type: application/json
 Authorization: Bearer JETON_D_AUTHENTIFICATION(token)
 
@@ -108,7 +108,7 @@ Body:
 > Cet endpont permet au employé de faire Checkin a l'entrer.
 
 ```http
-POST /api/check/in
+POST http://localhost:4000/api/check/in
 Content-Type: application/json
 
 
@@ -135,7 +135,7 @@ body:
 
 > Cet endpont permet au employé de faire Checkout au sortie.
 ```http
-PUT /api/check/out
+PUT http://localhost:4000/api/check/out
 Content-Type: application/json
 
 {
